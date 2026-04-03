@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset 30</title>
+    <title>Reset 30: Tu Diario</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Montserrat:wght@300;500;700&family=Indie+Flower&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --principal: #5e548e; /* Un lila ceniza */
-            --destacado: #b07d62; /* Terracota suave */
-            --fondo: #f4f1de; /* Arena/Crema neutro, nada de amarillo */
+            --principal: #6d597a; 
+            --destacado: #b56576; 
+            --fondo: #f2e9f4; /* Lila Pastel */
             --hoja: #ffffff; 
-            --texto: #3d405b; /* Gris azulado profundo */
+            --texto: #355070;
             --linea: #e0e0e0;
         }
         
@@ -22,7 +22,7 @@
         h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-style: italic; margin: 0; color: var(--principal); }
         
         .barra-progreso { background: #e9ecef; border-radius: 20px; height: 6px; width: 60%; margin: 15px auto; overflow: hidden; }
-        #progreso-llenado { background: var(--destacado); height: 100%; width: 0%; transition: 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        #progreso-llenado { background: var(--destacado); height: 100%; width: 0%; transition: 1s ease; }
 
         .tarjeta { 
             background: var(--hoja); 
@@ -30,18 +30,15 @@
             border-radius: 15px; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.03); 
             margin-bottom: 30px;
-            border: 1px solid rgba(0,0,0,0.02);
         }
         
-        h2 { font-size: 1.3rem; font-weight: 700; margin-top: 0; color: var(--principal); letter-spacing: -0.5px; }
-        
+        h2 { font-size: 1.3rem; font-weight: 700; margin-top: 0; color: var(--principal); }
         .contexto { font-size: 0.85rem; color: #8d99ae; margin-bottom: 25px; border-bottom: 1px solid var(--linea); padding-bottom: 10px; }
 
         .versiculo { 
             font-size: 1.2rem; font-family: 'Playfair Display', serif; font-style: italic;
             color: var(--texto); display: block; padding: 20px; 
-            background: #fdfaf7; margin: 25px 0; 
-            border-radius: 8px; border-left: 3px solid var(--destacado);
+            background: #fdfaf7; margin: 25px 0; border-radius: 8px; border-left: 3px solid var(--destacado);
             cursor: pointer;
         }
         
@@ -55,121 +52,142 @@
         }
         textarea:focus { outline: none; border-bottom: 1.5px solid var(--principal); }
 
-        .desafio-box { 
-            background: #f8f9fa; padding: 20px; border-radius: 12px; 
-            margin-top: 35px; border: 1px solid var(--linea);
-            font-size: 0.95rem; text-align: left;
-        }
+        .desafio-box { background: #f8f9fa; padding: 20px; border-radius: 12px; margin-top: 35px; border: 1px solid var(--linea); }
         .desafio-tag { color: var(--destacado); font-weight: 700; display: block; margin-bottom: 5px; font-size: 0.8rem; }
 
         .btn-principal { 
             background: var(--principal); color: white; border: none; 
             padding: 18px; border-radius: 12px; width: 100%; 
             font-weight: 700; margin-top: 25px; cursor: pointer;
-            transition: transform 0.2s;
         }
-        .btn-principal:active { transform: scale(0.98); }
 
-        .btn-reset {
-            background: transparent; border: none; color: #adb5bd;
-            font-size: 0.75rem; cursor: pointer; display: block; margin: 30px auto;
-        }
+        .btn-reset { background: transparent; border: none; color: #adb5bd; font-size: 0.75rem; cursor: pointer; display: block; margin: 30px auto; }
 
         .tracker-container { display: none; text-align: center; }
         .grilla { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; margin: 30px 0; }
-        .dia-circulo { 
-            width: 40px; height: 40px; border: 1.5px solid var(--linea); border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.9rem;
-        }
+        .dia-circulo { width: 40px; height: 40px; border: 1.5px solid var(--linea); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
         .dia-circulo.cumplido { background: var(--destacado); color: white; border-color: var(--destacado); }
+
+        /* Estilos del aviso Día 15 */
+        .overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(109, 89, 122, 0.85); z-index: 1000; align-items: center; justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .aviso-especial {
+            background: var(--hoja); padding: 40px; border-radius: 25px; text-align: center;
+            max-width: 320px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); animation: pop 0.4s ease;
+        }
+        .aviso-especial h3 { font-family: 'Playfair Display', serif; color: var(--principal); margin: 0; }
+        @keyframes pop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
 
-<div class="contenedor">
-    <header>
-        <h1>Reset de 30 días</h1>
-        <div class="barra-progreso"><div id="progreso-llenado"></div></div>
-    </header>
+    <div id="overlay-15" class="overlay">
+        <div class="aviso-especial">
+            <h3>✨ ¡Llegaste a la mitad!</h3>
+            <p>Increíble, Juli. Ya pasaron 15 días dedicándote este tiempo. No cualquiera tiene esa constancia. ¡Seguí así!</p>
+            <button class="btn-principal" onclick="cerrarAviso()">Vamos por más</button>
+        </div>
+    </div>
 
-    <div class="tarjeta" id="card-principal">
-        <h2 id="subtitulo"></h2>
-        <div id="box-contexto" class="contexto"></div>
+    <div class="contenedor">
+        <header>
+            <h1>Reset de 30 días</h1>
+            <div class="barra-progreso"><div id="progreso-llenado"></div></div>
+        </header>
 
-        <label>Lectura del día</label>
-        <span class="versiculo" id="cita" onclick="toggleMemoria()"></span>
-        
-        <p id="reflexion" style="font-size: 1rem; color: #4a4e69;"></p>
+        <div class="tarjeta" id="card-principal">
+            <h2 id="subtitulo"></h2>
+            <div id="box-contexto" class="contexto"></div>
 
-        <label>¿Qué pensás de esto?</label>
-        <textarea rows="3" id="input-reflexion" placeholder="Escribí acá tus pensamientos..."></textarea>
+            <label>Lectura del día</label>
+            <span class="versiculo" id="cita" onclick="toggleMemoria()"></span>
+            
+            <p id="reflexion"></p>
 
-        <label>Propósito de hoy</label>
-        <textarea rows="2" id="input-accion" placeholder="¿Cómo lo vas a aplicar?"></textarea>
+            <label>¿Qué pensás de esto?</label>
+            <textarea rows="3" id="input-reflexion" placeholder="Escribí acá..."></textarea>
 
-        <div class="desafio-box">
-            <span class="desafio-tag">EL DESAFÍO</span>
-            <div id="desafio"></div>
+            <label>Propósito de hoy</label>
+            <textarea rows="2" id="input-accion" placeholder="¿Cómo lo vas a aplicar?"></textarea>
+
+            <div class="desafio-box">
+                <span class="desafio-tag">EL DESAFÍO</span>
+                <div id="desafio"></div>
+            </div>
+
+            <button class="btn-principal" onclick="siguienteDia()">Finalizar día</button>
+            <button class="btn-reset" onclick="reiniciarTodo()">Reiniciar progreso</button>
         </div>
 
-        <button class="btn-principal" onclick="siguienteDia()">Finalizar día</button>
-        <button class="btn-reset" onclick="reiniciarTodo()">Reiniciar progreso</button>
+        <div class="tarjeta tracker-container" id="tracker-semanal">
+            <h2 id="tracker-titulo">Pausa Semanal</h2>
+            <p>Marcá los días que pudiste conectar:</p>
+            <div class="grilla" id="grilla-habitos"></div>
+            <button class="btn-principal" onclick="cerrarTracker()">Siguiente etapa</button>
+        </div>
     </div>
-
-    <div class="tarjeta tracker-container" id="tracker-semanal">
-        <h2>Pausa Semanal</h2>
-        <p style="font-size: 0.9rem; color: #777;">Marcá los días que pudiste completar tu reset:</p>
-        <div class="grilla" id="grilla-habitos"></div>
-        <button class="btn-principal" onclick="cerrarTracker()">Empezar siguiente semana</button>
-    </div>
-</div>
 
 <script>
     const contenidoDevocional = {
-        1: {
-            subtitulo: "Día 1: Calmar el ruido",
-            cita: "Salmos 46:10 - 'Quédense quietos y sepan que yo soy Dios'",
-            contexto: "Escrito durante conflictos militares. La quietud no era relajación, era confianza en medio del peligro.",
-            reflexion: "En un mundo que te pide correr, frenar es un acto de rebeldía y fe. ¿Qué pasaría si hoy dejas que Dios tome el volante?",
-            desafio: "Cociná algo rico y disfrutalo sin pantallas. Saboreá cada bocado.",
-        },
-        2: {
-            subtitulo: "Día 2: Tu diseño original",
-            cita: "Salmos 139:14 - 'Soy una creación admirable'",
-            contexto: "David escribió esto asombrado por la complejidad de la vida, mucho antes de la genética moderna.",
-            reflexion: "No sos un accidente ni un error. Tu personalidad y tus talentos tienen un propósito. Dejá de compararte.",
-            desafio: "Mandale un mensaje a alguien que aprecias mucho, solo para decirle por qué es importante para vos.",
-        },
-        3: {
-            subtitulo: "Día 3: Soltar la carga",
-            cita: "1 Pedro 5:7 - 'Depositen en él toda su ansiedad'",
-            contexto: "Pedro le hablaba a comunidades bajo mucha presión externa. 'Depositar' es transferir la carga a alguien más capaz.",
-            reflexion: "No fuiste diseñada para cargar con el peso del futuro. Dios ya está ahí, esperándote.",
-            desafio: "Mañana, despertate 10 minutos antes y quedate en silencio, sin mirar el celular.",
-        }
+        1: { subtitulo: "Día 1: Calmar el ruido", cita: "Salmos 46:10 - 'Quédense quietos...'", contexto: "Escrito en conflictos; quietud = confianza.", reflexion: "¿Qué pasaría si hoy dejas que Dios tome el volante?", desafio: "Cociná algo rico y disfrutalo sin pantallas." },
+        2: { subtitulo: "Día 2: Tu diseño", cita: "Salmos 139:14 - 'Soy una creación admirable'", contexto: "Asombro por la vida.", reflexion: "No sos un accidente. Tenés un propósito.", desafio: "Mandale un mensaje de agradecimiento a alguien." },
+        3: { subtitulo: "Día 3: Soltar la carga", cita: "1 Pedro 5:7 - 'Depositen en él toda su ansiedad'", contexto: "Soltar el peso a alguien más fuerte.", reflexion: "No fuiste diseñada para cargar el futuro.", desafio: "Mañana despertate 10 min antes y quedate en silencio." },
+        4: { subtitulo: "Día 4: Amistades reales", cita: "Proverbios 17:17 - 'El amigo ama en todo momento'", contexto: "Sabiduría sobre la amistad.", reflexion: "¿Tu círculo te impulsa o te drena?", desafio: "Saludá a esa amiga con la que no hablás hace mucho." },
+        5: { subtitulo: "Día 5: Palabras que sanan", cita: "Proverbios 18:21 - 'La lengua tiene poder'", contexto: "Lo que decimos crea nuestra realidad.", reflexion: "¿Cómo te hablás a vos misma?", desafio: "Hoy no podés quejarte de nada." },
+        6: { subtitulo: "Día 6: Cuerpo y Alma", cita: "1 Corintios 6:19 - 'Tu cuerpo es templo'", contexto: "Cuidar el cuerpo es espiritual.", reflexion: "Descansar y moverte es honrar la vida.", desafio: "Hacé 15 min de actividad física." },
+        7: { subtitulo: "Día 7: Descanso real", cita: "Mateo 11:28 - 'Vengan a mí los cansados'", contexto: "Jesús ofrecía alivio.", reflexion: "Llegaste al final de la semana. Descansá.", desafio: "Tomate una hora libre de pantallas." },
+        8: { subtitulo: "Día 8: Nuevos comienzos", cita: "Lamentaciones 3:23 - 'Se renueva cada mañana'", contexto: "Esperanza diaria.", reflexion: "Ayer ya pasó. Hoy es una página en blanco.", desafio: "Escribí 3 cosas que agradecés hoy." },
+        9: { subtitulo: "Día 9: Valentía", cita: "Josué 1:9 - 'Sé fuerte y valiente'", contexto: "Avanzar aunque haya miedo.", reflexion: "La valentía es avanzar con miedo.", desafio: "Hacé esa tarea que venís postergando." },
+        10: { subtitulo: "Día 10: La luz interior", cita: "Mateo 5:14 - 'Ustedes son la luz'", contexto: "Tu actitud cambia el entorno.", reflexion: "¿A quién podés alegrarle el día hoy?", desafio: "Hacé un cumplido sincero a alguien." },
+        11: { subtitulo: "Día 11: Sos vista", cita: "Génesis 16:13 - 'Tú eres el Dios que me ve'", contexto: "Nunca estás sola.", reflexion: "Él te mira con amor siempre.", desafio: "Mirá el cielo 5 minutos en silencio." },
+        12: { subtitulo: "Día 12: Paciencia", cita: "Santiago 1:4 - 'Que la paciencia complete su obra'", contexto: "No apures tu proceso.", reflexion: "Las cosas buenas llevan tiempo.", desafio: "Si hacés fila hoy, no saques el celular." },
+        13: { subtitulo: "Día 13: Sabiduría", cita: "Santiago 1:5 - 'Si falta sabiduría, pídala'", contexto: "Guía para el siguiente paso.", reflexion: "No necesitás todas las respuestas hoy.", desafio: "Pedile un consejo a alguien que respetes." },
+        14: { subtitulo: "Día 14: Conocida", cita: "Salmos 139:1 - 'Tú me examinas y conoces'", contexto: "Intimidad con el Creador.", reflexion: "Él conoce tus luces y sombras.", desafio: "Celebrá tus logros de estas dos semanas." },
+        15: { subtitulo: "Día 15: Perdonar", cita: "Efesios 4:32 - 'Perdónense unos a otros'", contexto: "Decisión para liberar el corazón.", reflexion: "Perdonar es decidir que ya no te duela.", desafio: "Escribí una carta a alguien que te hirió y rompéla." },
+        16: { subtitulo: "Día 16: Servicio", cita: "Gálatas 5:13 - 'Sírvanse con amor'", contexto: "Ayudar al otro nos libera.", reflexion: "Servir hace que tus problemas pesen menos.", desafio: "Hacé un favor hoy sin que te lo pidan." },
+        17: { subtitulo: "Día 17: Escuchar", cita: "Santiago 1:19 - 'Pronto para oír'", contexto: "Evitá conflictos oyendo más.", reflexion: "A veces solo necesitamos sentirnos escuchados.", desafio: "Hacé preguntas antes de hablar de vos." },
+        18: { subtitulo: "Día 18: Límites", cita: "Mateo 5:37 - 'Que tu sí sea sí'", contexto: "Honestidad para estar en paz.", reflexion: "Decir 'no' a otros es decirte 'sí' a vos.", desafio: "Decí que no a algo que no quieras hacer hoy." },
+        19: { subtitulo: "Día 19: Generosidad", cita: "2 Corintios 9:7 - 'Dar con alegría'", contexto: "Actitud de manos abiertas.", reflexion: "Ser generosa te conecta con la abundancia.", desafio: "Regalá algo que te guste a alguien." },
+        20: { subtitulo: "Día 20: No juzgar", cita: "Mateo 7:1 - 'No juzguen'", contexto: "Cada uno pelea su batalla.", reflexion: "Sé amable con los procesos ajenos.", desafio: "Pensá en una virtud de alguien que te caiga mal." },
+        21: { subtitulo: "Día 21: Hechos", cita: "1 Juan 3:18 - 'Amemos con hechos'", contexto: "El amor es un verbo.", reflexion: "Menos palabras y más gestos hoy.", desafio: "Tené un detalle especial con tu familia." },
+        22: { subtitulo: "Día 22: Talentos", cita: "Mateo 25:15 - 'Según su capacidad'", contexto: "Usá lo que tenés hoy.", reflexion: "Lo que importa es qué hacés con tu don.", desafio: "Usá una habilidad tuya para ayudar a alguien." },
+        23: { subtitulo: "Día 23: Disciplina", cita: "Hebreos 12:11 - 'Trae fruto apacible'", contexto: "El puente a tus metas.", reflexion: "Hacer lo correcto aunque no tengas ganas.", desafio: "Cumplí tu rutina de hoy al 100%." },
+        24: { subtitulo: "Día 24: Integridad", cita: "Proverbios 10:9 - 'Camina seguro'", contexto: "Ser la misma cuando nadie ve.", reflexion: "Tus acciones deben coincidir con tus valores.", desafio: "Si ves un error a tu favor hoy, avisá." },
+        25: { subtitulo: "Día 25: Planes", cita: "Jeremías 29:11 - 'Planes de bienestar'", contexto: "Tu futuro está en buenas manos.", reflexion: "Confiá en el proceso de Dios.", desafio: "Escribí tus sueños para el próximo año." },
+        26: { subtitulo: "Día 26: Levantarse", cita: "Proverbios 24:16 - 'Cae y se levanta'", contexto: "La fuerza está en la persistencia.", reflexion: "Un error no es un punto final.", desafio: "Perdonáte por un fallo reciente." },
+        27: { subtitulo: "Día 27: Gratitud", cita: "1 Tesalonicenses 5:18 - 'Den gracias en todo'", contexto: "Actitud que cambia el cerebro.", reflexion: "Agradecer te cambia la perspectiva.", desafio: "Listá 10 cosas por las que agradecés hoy." },
+        28: { subtitulo: "Día 28: Compartir", cita: "Marcos 16:15 - 'Vayan por el mundo'", contexto: "No te guardes lo aprendido.", reflexion: "Tu camino puede guiar a otros.", desafio: "Compartí una frase positiva con un amigo." },
+        29: { subtitulo: "Día 29: Cosecha", cita: "Gálatas 6:9 - 'No nos cansemos'", contexto: "Promesa para los que perseveran.", reflexion: "Estás a nada de la meta. No aflojes.", desafio: "Ordená tu cuarto para cerrar el mes." },
+        30: { subtitulo: "Día 30: Meta", cita: "Filipenses 1:6 - 'Completará la obra'", contexto: "El crecimiento no termina.", reflexion: "¡Lo lograste! Sos una nueva versión.", desafio: "Compará tu primer día con hoy y festejá." }
     };
 
     let diaActual = parseInt(localStorage.getItem('diaDevocional')) || 1;
     let versiculoOriginal = "";
 
     function cargarDia(num) {
-        const data = contenidoDevocional[num];
-        if (!data) {
-            diaActual = 1;
-            cargarDia(1);
-            return;
+        if (num === 15 && !localStorage.getItem('aviso15Visto')) {
+            document.getElementById('overlay-15').style.display = 'flex';
         }
-        
+
+        const data = contenidoDevocional[num] || contenidoDevocional[30]; 
         document.getElementById('subtitulo').innerText = data.subtitulo;
         versiculoOriginal = data.cita;
         document.getElementById('cita').innerText = data.cita;
-        document.getElementById('box-contexto').innerText = data.contexto;
+        document.getElementById('box-contexto').innerText = "📜 " + data.contexto;
         document.getElementById('reflexion').innerText = data.reflexion;
         document.getElementById('desafio').innerText = data.desafio;
         document.getElementById('progreso-llenado').style.width = (num / 30 * 100) + "%";
         
         document.getElementById('input-reflexion').value = "";
         document.getElementById('input-accion').value = "";
+    }
+
+    function cerrarAviso() {
+        document.getElementById('overlay-15').style.display = 'none';
+        localStorage.setItem('aviso15Visto', 'true');
     }
 
     function toggleMemoria() {
@@ -189,6 +207,7 @@
     function mostrarTracker() {
         document.getElementById('card-principal').style.display = 'none';
         document.getElementById('tracker-semanal').style.display = 'block';
+        document.getElementById('tracker-titulo').innerText = "Cierre Semana " + (diaActual/7);
         const grilla = document.getElementById('grilla-habitos');
         grilla.innerHTML = "";
         for(let i=1; i<=7; i++) {
@@ -208,6 +227,8 @@
             localStorage.setItem('diaDevocional', diaActual);
             cargarDia(diaActual);
             window.scrollTo(0,0);
+        } else {
+            alert("¡Felicidades! Completaste los 30 días.");
         }
     }
 
