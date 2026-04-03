@@ -3,179 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset 30: Devocional Interactivo</title>
+    <title>Reset 30: Tu espacio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@400;700&family=Indie+Flower&display=swap" rel="stylesheet">
     <style>
-        :root { --principal: #4a4e69; --destacado: #9a8c98; --fondo: #f2e9e4; --tarjeta: #ffffff; --texto: #22223b; --check: #8e947a; }
+        :root { 
+            --principal: #6d597a; /* Un violeta más cálido */
+            --destacado: #b56576; /* Rosa viejo */
+            --fondo: #fcf6bd; /* Amarillo crema muy suave */
+            --hoja: #fffcf2; 
+            --texto: #355070;
+        }
+        
         body { font-family: 'Montserrat', sans-serif; background: var(--fondo); color: var(--texto); margin: 0; padding: 15px; }
-        .contenedor { max-width: 480px; margin: auto; padding-bottom: 50px; }
-        header { text-align: center; padding: 20px 0; }
-        .barra-progreso { background: #d8e2dc; border-radius: 20px; height: 10px; width: 100%; margin: 15px 0; overflow: hidden; }
-        #progreso-llenado { background: var(--destacado); height: 100%; width: 0%; transition: 0.8s; }
-        .tarjeta { background: var(--tarjeta); padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px; }
         
-        .versiculo { font-size: 1.1rem; font-weight: 600; color: var(--destacado); display: block; padding: 15px; border-left: 4px solid var(--destacado); background: #faf9f6; margin: 15px 0; cursor: pointer; border-radius: 0 10px 10px 0; }
-        .contexto { font-size: 0.85rem; color: #666; background: #f0efeb; padding: 12px; border-radius: 10px; margin-bottom: 15px; line-height: 1.4; }
+        .contenedor { max-width: 450px; margin: auto; }
         
-        label { font-weight: 700; display: block; margin-top: 25px; color: var(--principal); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        .pregunta-reflexiva { font-style: italic; color: #555; margin-bottom: 10px; display: block; }
+        header { text-align: center; padding: 30px 0 10px; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; margin: 0; color: var(--principal); }
         
-        textarea { width: 100%; border: 2px solid #eee; border-radius: 12px; padding: 12px; margin-top: 8px; box-sizing: border-box; font-family: inherit; font-size: 1rem; resize: none; transition: 0.3s; }
-        textarea:focus { border-color: var(--destacado); outline: none; background: #fffdfa; }
+        .barra-progreso { background: #eeebe3; border-radius: 10px; height: 8px; width: 80%; margin: 10px auto; overflow: hidden; }
+        #progreso-llenado { background: var(--destacado); height: 100%; width: 0%; transition: 1s ease-in-out; }
 
-        .desafio-box { background: #fdfaf0; border: 2px dashed var(--destacado); padding: 15px; border-radius: 15px; margin-top: 15px; font-weight: 600; color: var(--principal); }
+        .tarjeta { 
+            background: var(--hoja); 
+            padding: 30px; 
+            border-radius: 2px; /* Menos redondeado para parecer hoja de papel */
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.05); 
+            margin-bottom: 20px;
+            position: relative;
+            border-left: 20px solid #e9edc9; /* Efecto margen de cuaderno */
+        }
         
-        .btn-principal { background: var(--principal); color: white; border: none; padding: 18px; border-radius: 15px; width: 100%; font-weight: 700; margin-top: 30px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        /* Decoración de "anillos" de cuaderno */
+        .tarjeta::before {
+            content: "• • • • • • •";
+            position: absolute;
+            left: -15px;
+            top: 20px;
+            color: #ccc;
+            font-size: 20px;
+            writing-mode: vertical-rl;
+        }
+
+        h2 { font-family: 'Indie Flower', crossorigin; font-size: 1.8rem; margin-top: 0; color: var(--destacado); }
         
+        .contexto { font-size: 0.85rem; color: #777; font-style: italic; margin-bottom: 20px; }
+
+        .versiculo { 
+            font-size: 1.2rem; 
+            font-family: 'Indie Flower', cursive; 
+            color: var(--texto); 
+            display: block; 
+            padding: 15px; 
+            background: rgba(212, 163, 115, 0.1);
+            margin: 15px 0; 
+            border-radius: 5px;
+            line-height: 1.4;
+            cursor: pointer;
+        }
+        
+        label { font-weight: 700; display: block; margin-top: 25px; color: var(--principal); font-size: 0.8rem; text-transform: uppercase; }
+        
+        textarea { 
+            width: 100%; 
+            border: none; 
+            border-bottom: 1px solid #d4a373; /* Solo línea abajo para parecer renglón */
+            background: transparent;
+            padding: 10px 5px; 
+            margin-top: 5px; 
+            box-sizing: border-box; 
+            font-family: 'Indie Flower', cursive; /* Letra manuscrita cuando escribís */
+            font-size: 1.2rem; 
+            resize: none; 
+        }
+        textarea:focus { outline: none; border-bottom: 2px solid var(--destacado); }
+
+        .desafio-box { 
+            background: #e9edc9; 
+            padding: 15px; 
+            border-radius: 10px; 
+            margin-top: 25px; 
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .btn-principal { 
+            background: var(--principal); 
+            color: white; 
+            border: none; 
+            padding: 15px; 
+            border-radius: 50px; 
+            width: 100%; 
+            font-weight: 700; 
+            margin-top: 30px; 
+            cursor: pointer; 
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Estilo para el tracker al final */
         .tracker-container { display: none; text-align: center; }
         .grilla { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin: 20px 0; }
-        .dia-circulo { width: 40px; height: 40px; border: 2px solid var(--destacado); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; }
-        .dia-circulo.cumplido { background: var(--check); color: white; border-color: var(--check); }
+        .dia-circulo { 
+            width: 35px; height: 35px; border: 1px solid var(--destacado); border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; cursor: pointer; 
+        }
+        .dia-circulo.cumplido { background: var(--destacado); color: white; }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div class="contenedor">
     <header>
-        <h1 id="titulo-dia">Cargando...</h1>
+        <h1>Mi Reset Diario</h1>
         <div class="barra-progreso"><div id="progreso-llenado"></div></div>
-        <small id="texto-progreso"></small>
     </header>
 
     <div class="tarjeta" id="card-principal">
-        <h2 id="subtitulo" style="margin-top:0; color: var(--principal);"></h2>
-        
+        <h2 id="subtitulo"></h2>
         <div id="box-contexto" class="contexto"></div>
 
-        <label>📖 Versículo (Tap para memorizar):</label>
+        <label>📖 El verso de hoy (Tap para memorizar)</label>
         <span class="versiculo" id="cita" onclick="toggleMemoria()"></span>
         
-        <label>🤔 Reflexioná:</label>
-        <p id="reflexion" style="line-height: 1.6;"></p>
+        <p id="reflexion" style="font-size: 1rem;"></p>
 
-        <label>✍️ Tu turno:</label>
-        <span class="pregunta-reflexiva" id="pregunta-user"></span>
-        <textarea rows="4" id="input-reflexion" placeholder="Escribí acá lo que sentís..."></textarea>
+        <label>💭 ¿Qué te resuena de esto?</label>
+        <textarea rows="3" id="input-reflexion" placeholder="Escribí acá..."></textarea>
 
-        <label>📌 Aplicación práctica:</label>
-        <span class="pregunta-reflexiva">¿Cómo vas a vivir este versículo en las próximas 24 horas?</span>
-        <textarea rows="3" id="input-accion" placeholder="Ej: Hoy voy a responder con paciencia aunque me apuren..."></textarea>
-
-        <div class="desafio-box" id="desafio"></div>
-
-        <button class="btn-principal" onclick="siguienteDia()">Guardar y Continuar →</button>
-    </div>
-
-    <div class="tarjeta tracker-container" id="tracker-semanal">
-        <h2>📊 Balance Semanal</h2>
-        <p>¡Primera semana adentro! Marcá los días que lograste conectar:</p>
-        <div class="grilla" id="grilla-habitos"></div>
-        <button class="btn-principal" onclick="cerrarTracker()">Empezar nueva semana</button>
-    </div>
-</div>
-
-<script>
-    const contenidoDevocional = {
-        1: {
-            titulo: "Día 1: Resetear el Bocho",
-            subtitulo: "Bajá un cambio",
-            cita: "Salmos 46:10 - 'Quédense quietos y sepan que yo soy Dios'",
-            contexto: "Escrito en medio de guerras. 'Quedarse quieto' era una orden militar de confianza total en Dios, no un ratito de spa.",
-            reflexion: "A veces pensamos que si no corremos, el mundo se frena. Pero Dios tiene el control. Soltar el timón es un acto de fe.",
-            pregunta: "¿Qué es lo que más te genera ruido mental hoy?",
-            desafio: "🔥 Desafío: Cociná algo rico y compartilo sin subir ninguna foto a redes. Disfrutá el momento real.",
-        },
-        2: {
-            titulo: "Día 2: Identidad Real",
-            subtitulo: "Hecho a mano",
-            cita: "Salmos 139:14 - 'Te alabo porque soy una creación admirable'",
-            contexto: "David no tenía microscopio, pero entendía que cada latido era un milagro de diseño divino.",
-            reflexion: "Sos una obra maestra, no un producto en serie. Dios no se equivocó con vos ni con tu personalidad.",
-            pregunta: "¿Qué parte de tu personalidad te cuesta aceptar y por qué?",
-            desafio: "🔥 Desafío: Mandale un audio a alguien con quien no hablas hace mil. Decile algo copado.",
-        },
-        3: {
-            titulo: "Día 3: Soltar la Mochila",
-            subtitulo: "Chau Ansiedad",
-            cita: "1 Pedro 5:7 - 'Depositen en él toda su ansiedad'",
-            contexto: "Pedro le hablaba a cristianos perseguidos que tenían motivos reales para tener miedo. No era un consejo vacío.",
-            reflexion: "La ansiedad quiere que vivas en un futuro que todavía no existe. Dios está acá, hoy, con vos.",
-            pregunta: "Si tu ansiedad fuera un objeto, ¿qué tan pesado sería hoy? Escribí por qué.",
-            desafio: "🔥 Desafío: Mañana, los primeros 10 minutos al despertar son sin celular. Solo respirá y agradecé.",
-        }
-    };
-
-    let diaActual = parseInt(localStorage.getItem('diaDevocional')) || 1;
-    let versiculoOriginal = "";
-
-    function cargarDia(num) {
-        const data = contenidoDevocional[num];
-        if (!data) {
-            alert("¡Genial! Terminaste lo cargado. Pronto más contenido.");
-            return;
-        }
-        
-        document.getElementById('titulo-dia').innerText = data.titulo;
-        document.getElementById('subtitulo').innerText = data.subtitulo;
-        versiculoOriginal = data.cita;
-        document.getElementById('cita').innerText = data.cita;
-        document.getElementById('box-contexto').innerText = "📜 CONTEXTO: " + data.contexto;
-        document.getElementById('reflexion').innerText = data.reflexion;
-        document.getElementById('pregunta-user').innerText = data.pregunta;
-        document.getElementById('desafio').innerText = data.desafio;
-        document.getElementById('texto-progreso').innerText = `Día ${num} de 30`;
-        document.getElementById('progreso-llenado').style.width = (num / 30 * 100) + "%";
-
-        // Limpiar inputs
-        document.getElementById('input-reflexion').value = "";
-        document.getElementById('input-accion').value = "";
-    }
-
-    function toggleMemoria() {
-        const citaEl = document.getElementById('cita');
-        if (citaEl.innerText === versiculoOriginal) {
-            citaEl.innerText = versiculoOriginal.replace(/\b(\w{4,})\b/g, "____");
-        } else {
-            citaEl.innerText = versiculoOriginal;
-        }
-    }
-
-    function siguienteDia() {
-        if (diaActual % 7 === 0) {
-            mostrarTracker();
-        } else {
-            avanzar();
-        }
-    }
-
-    function mostrarTracker() {
-        document.getElementById('card-principal').style.display = 'none';
-        const tracker = document.getElementById('tracker-semanal');
-        tracker.style.display = 'block';
-        const grilla = document.getElementById('grilla-habitos');
-        grilla.innerHTML = "";
-        for(let i=1; i<=7; i++) {
-            grilla.innerHTML += `<div class="dia-circulo" onclick="this.classList.toggle('cumplido')">${i}</div>`;
-        }
-    }
-
-    function cerrarTracker() {
-        document.getElementById('tracker-semanal').style.display = 'none';
-        document.getElementById('card-principal').style.display = 'block';
-        avanzar();
-    }
-
-    function avanzar() {
-        if (diaActual < 30) {
-            diaActual++;
-            localStorage.setItem('diaDevocional', diaActual);
-            cargarDia(diaActual);
-            window.scrollTo(0,0);
-        }
-    }
-
-    cargarDia(diaActual);
-</script>
-
-</body>
-</html>
+        <label>🎯 ¿Cómo lo bajamos a tierra hoy?</label>
+        <textarea rows="2" id="input
