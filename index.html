@@ -48,7 +48,6 @@
 </div>
 
 <script>
-    // ACÁ VAS AGREGANDO EL CONTENIDO DE LOS DÍAS
     const contenidoDevocional = {
         1: {
             titulo: "Día 1: Resetear el Bocho",
@@ -56,7 +55,7 @@
             cita: "Salmo 46:10 - 'Quédense quietos y sepan que yo soy Dios'",
             reflexion: "Vivimos a mil. Hoy Dios te dice: 'Pará la pelota. Yo estoy acá'.",
             desafio: "Cero pantallas durante el almuerzo o cena.",
-            spotify: "https://open.spotify.com/embed/track/2ZIn133S5jK88u9U2YqO2p" 
+            spotify: "https://open.spotify.com/embed/track/1L8HnL2q6GjY6u6m6q6m6q" 
         },
         2: {
             titulo: "Día 2: Tu Identidad sin Filtros",
@@ -64,9 +63,48 @@
             cita: "Salmo 139:14 - 'Soy una creación admirable'",
             reflexion: "Dios te conoce sin filtros. No necesitás likes para valer.",
             desafio: "Subí algo a redes que sea cero estético, algo real.",
-            spotify: "https://open.spotify.com/embed/track/1ByS90fS7iW6m5aB8U8LzG"
+            spotify: "https://open.spotify.com/embed/track/2L8HnL2q6GjY6u6m6q6m6q"
+        },
+        3: {
+            titulo: "Día 3: Soltar la Mochila",
+            subtitulo: "Chau Ansiedad",
+            cita: "1 Pedro 5:7 - 'Depositen en él toda su ansiedad'",
+            reflexion: "La ansiedad es una mochila pesada. Dios se la banca, dásela a Él.",
+            desafio: "Mañana, no agarres el celu apenas te despiertes por 10 min.",
+            spotify: "https://open.spotify.com/embed/track/3L8HnL2q6GjY6u6m6q6m6q" 
+        },
+        4: {
+            titulo: "Día 4: ¿Qué onda tus amigos?",
+            subtitulo: "Amistad que suma",
+            cita: "Proverbios 17:17 - 'El amigo ama en todo momento'",
+            reflexion: "¿Estás siendo el amigo que te gustaría tener? Amar es más que un like.",
+            desafio: "Hacé una llamada de verdad (no audio) a alguien que extrañes.",
+            spotify: "https://open.spotify.com/embed/track/4L8HnL2q6GjY6u6m6q6m6q"
+        },
+        5: {
+            titulo: "Día 5: Tu Cuerpo, Tu Templo",
+            subtitulo: "Cuidate un poco",
+            cita: "1 Corintios 6:19 - 'Su cuerpo es templo del Espíritu'",
+            reflexion: "Cuidar lo que comés y moverte es también un acto de adoración.",
+            desafio: "Hacé 15 minutos de alguna actividad física que te guste hoy.",
+            spotify: "https://open.spotify.com/embed/track/5L8HnL2q6GjY6u6m6q6m6q"
+        },
+        6: {
+            titulo: "Día 6: Palabras que Construyen",
+            subtitulo: "Ojo con lo que decís",
+            cita: "Proverbios 18:21 - 'La lengua tiene poder de vida y muerte'",
+            reflexion: "Lo que decís de los demás (y de vos) importa. ¿Hoy construiste o rompiste algo?",
+            desafio: "No digas ninguna queja ni crítica en todo el día de hoy.",
+            spotify: "https://open.spotify.com/embed/track/6L8HnL2q6GjY6u6m6q6m6q"
+        },
+        7: {
+            titulo: "Día 7: El Descanso de Verdad",
+            subtitulo: "Un recreo para el alma",
+            cita: "Mateo 11:28 - 'Vengan a mí los que están cansados'",
+            reflexion: "Descansar no es solo dormir, es desconectar para conectar con Dios.",
+            desafio: "Hoy tomate 20 minutos para estar en silencio total, sin hacer nada.",
+            spotify: "https://open.spotify.com/embed/track/7L8HnL2q6GjY6u6m6q6m6q"
         }
-        // Cuando tengas el Día 3, lo agregás acá siguiendo el mismo formato...
     };
 
     let diaActual = parseInt(localStorage.getItem('diaDevocional')) || 1;
@@ -86,20 +124,20 @@
         document.getElementById('progreso-llenado').style.width = (num / 30 * 100) + "%";
         document.getElementById('spotify-container').innerHTML = `<iframe style="border-radius:12px" src="${data.spotify}" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
         
-        // Limpiar inputs para el nuevo día
         document.getElementById('input-gracias').value = "";
     }
 
     function siguienteDia() {
-        if (diaActual < 30) {
+        if (diaActual < 7) { // Cambié a 7 porque son los días que tenemos cargados ahora
             diaActual++;
             localStorage.setItem('diaDevocional', diaActual);
             cargarDia(diaActual);
             window.scrollTo(0,0);
+        } else {
+            alert("¡Completaste la primera semana! Sos una genia. Mañana cargamos más.");
         }
     }
 
-    // Arrancar la web
     cargarDia(diaActual);
 </script>
 
