@@ -3,60 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>30 Días de Propósito</title>
+    <title>Conectados: 30 Días de Reset</title>
     <style>
-        :root {
-            --primary: #6b705c; /* Verde musgo suave */
-            --bg: #fffcf2;
-            --text: #252422;
-        }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
-        header { text-align: center; margin-bottom: 30px; }
-        .progress-container { background: #e9edc9; border-radius: 10px; height: 10px; width: 100%; margin-bottom: 20px; }
-        #progress-bar { background: var(--primary); height: 100%; width: 5%; border-radius: 10px; transition: 0.3s; }
-        .day-card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        h2 { color: var(--primary); margin-top: 0; }
-        textarea { width: 100%; border: 1px solid #ccc; border-radius: 8px; padding: 10px; margin: 10px 0; box-sizing: border-box; }
-        .btn-check { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; width: 100%; }
-        .grid-days { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; }
-        .day-dot { width: 100%; aspect-ratio: 1; border: 1px solid var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; cursor: pointer; }
-        .completed { background: var(--primary); color: white; }
+        :root { --principal: #4a4e69; --destacado: #9a8c98; --fondo: #f2e9e4; --tarjeta: #ffffff; --texto: #22223b; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--fondo); color: var(--texto); margin: 0; padding: 15px; }
+        .contenedor { max-width: 480px; margin: auto; padding-bottom: 50px; }
+        header { text-align: center; padding: 20px 0; }
+        .barra-progreso { background: #d8e2dc; border-radius: 20px; height: 10px; width: 100%; margin: 15px 0; overflow: hidden; }
+        #progreso-llenado { background: var(--destacado); height: 100%; width: 0%; transition: 0.8s; }
+        .tarjeta { background: var(--tarjeta); padding: 25px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .versiculo { font-size: 1.1rem; font-weight: 500; color: var(--destacado); display: block; padding-left: 15px; border-left: 4px solid var(--destacado); margin: 15px 0; }
+        label { font-weight: 700; display: block; margin-top: 20px; color: var(--principal); }
+        textarea, input { width: 100%; border: 2px solid #eee; border-radius: 12px; padding: 12px; margin-top: 8px; box-sizing: border-box; font-family: inherit; }
+        .btn-principal { background: var(--principal); color: white; border: none; padding: 18px; border-radius: 15px; width: 100%; font-weight: 700; margin-top: 30px; cursor: pointer; }
+        .spotify-wrapper { margin-top: 20px; border-radius: 12px; overflow: hidden; }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-    <h1>Devocional Diario</h1>
-    <p>Día 1: Sembrando en Silencio</p>
-    <div class="progress-container"><div id="progress-bar"></div></div>
-</header>
+<div class="contenedor">
+    <header>
+        <h1 id="titulo-dia">Cargando...</h1>
+        <div class="barra-progreso"><div id="progreso-llenado"></div></div>
+        <small id="texto-progreso"></small>
+    </header>
 
-<main>
-    <div class="day-card">
-        <h2>"Estén quietos y reconozcan..."</h2>
-        <p><em>Salmo 46:10</em></p>
-        <p>Hoy el desafío es frenar. En un mundo de ruido, el silencio es un acto de fe.</p>
-        
-        <hr>
-        <strong>Reflexión:</strong>
-        <p>¿Qué es lo que más te cuesta entregar hoy al silencio?</p>
-        <textarea placeholder="Escribí tu oración o pensamiento acá..."></textarea>
-        
-        <strong>Acción:</strong>
-        <p>Apagá las notificaciones por 30 minutos y simplemente agradecé.</p>
-        
-        <button class="btn-check" onclick="completeDay()">Marcar como completado</button>
+    <div class="tarjeta">
+        <h2 id="subtitulo"></h2>
+        <span class="versiculo" id="cita"></span>
+        <p id="reflexion"></p>
+
+        <label>✨ 3 cosas que agradezco hoy:</label>
+        <textarea rows="2" id="input-gracias"></textarea>
+
+        <label>✅ Desafío del día:</label>
+        <p id="desafio" style="background: #f8f9fa; padding: 10px; border-radius: 10px;"></p>
+
+        <label>🎧 Worship recomendado:</label>
+        <div id="spotify-container" class="spotify-wrapper"></div>
+
+        <button class="btn-principal" onclick="siguienteDia()">¡Listo por hoy! →</button>
     </div>
-
-    <div class="grid-days">
-        </div>
-</main>
+</div>
 
 <script>
-    function completeDay() {
-        alert("¡Día 1 completado! Mañana te espera un nuevo paso.");
-        document.getElementById('progress-bar').style.width = "10%";
+    // ACÁ VAS AGREGANDO EL CONTENIDO DE LOS DÍAS
+    const contenidoDevocional = {
+        1: {
+            titulo: "Día 1: Resetear el Bocho",
+            subtitulo: "Bajá un cambio",
+            cita: "Salmo 46:10 - 'Quédense quietos y sepan que yo soy Dios'",
+            reflexion: "Vivimos a mil. Hoy Dios te dice: 'Pará la pelota. Yo estoy acá'.",
+            desafio: "Cero pantallas durante el almuerzo o cena.",
+            spotify: "https://open.spotify.com/embed/track/2ZIn133S5jK88u9U2YqO2p" 
+        },
+        2: {
+            titulo: "Día 2: Tu Identidad sin Filtros",
+            subtitulo: "Sos un 10 para Él",
+            cita: "Salmo 139:14 - 'Soy una creación admirable'",
+            reflexion: "Dios te conoce sin filtros. No necesitás likes para valer.",
+            desafio: "Subí algo a redes que sea cero estético, algo real.",
+            spotify: "https://open.spotify.com/embed/track/1ByS90fS7iW6m5aB8U8LzG"
+        }
+        // Cuando tengas el Día 3, lo agregás acá siguiendo el mismo formato...
+    };
+
+    let diaActual = parseInt(localStorage.getItem('diaDevocional')) || 1;
+
+    function cargarDia(num) {
+        const data = contenidoDevocional[num];
+        if (!data) {
+            alert("¡Llegaste al final de lo cargado! Pronto habrá más días.");
+            return;
+        }
+        document.getElementById('titulo-dia').innerText = data.titulo;
+        document.getElementById('subtitulo').innerText = data.subtitulo;
+        document.getElementById('cita').innerText = data.cita;
+        document.getElementById('reflexion').innerText = data.reflexion;
+        document.getElementById('desafio').innerText = data.desafio;
+        document.getElementById('texto-progreso').innerText = `Día ${num} de 30`;
+        document.getElementById('progreso-llenado').style.width = (num / 30 * 100) + "%";
+        document.getElementById('spotify-container').innerHTML = `<iframe style="border-radius:12px" src="${data.spotify}" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+        
+        // Limpiar inputs para el nuevo día
+        document.getElementById('input-gracias').value = "";
     }
+
+    function siguienteDia() {
+        if (diaActual < 30) {
+            diaActual++;
+            localStorage.setItem('diaDevocional', diaActual);
+            cargarDia(diaActual);
+            window.scrollTo(0,0);
+        }
+    }
+
+    // Arrancar la web
+    cargarDia(diaActual);
 </script>
+
 </body>
 </html>
